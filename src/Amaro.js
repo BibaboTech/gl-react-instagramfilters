@@ -35,11 +35,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Amaro}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/blackboard1024.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/overlayMap.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/amaroMap.png')),
@@ -47,6 +47,9 @@ module.exports = GL.createComponent(
     />
   },
   {
-    displayName: "Amaro"
+    displayName: "Amaro",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

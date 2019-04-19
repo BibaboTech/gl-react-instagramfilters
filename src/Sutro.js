@@ -47,11 +47,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Sutro}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/vignetteMap.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/sutroMetal.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/softLight.png')),
@@ -61,6 +61,9 @@ module.exports = GL.createComponent(
     />
   },
   {
-    displayName: "Sutro"
+    displayName: "Sutro",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

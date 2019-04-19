@@ -22,16 +22,19 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Inkwell}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/inkwellMap.png')),
       }}
     />
   },
   {
-    displayName: "Inkwell"
+    displayName: "Inkwell",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

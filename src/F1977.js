@@ -27,16 +27,19 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.F1977}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/1977map.png'))
       }}
     />
   },
   {
-    displayName: "F1977"
+    displayName: "F1977",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

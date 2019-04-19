@@ -24,16 +24,19 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Nashville}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/nashvilleMap.png')),
       }}
     />
   },
   {
-    displayName: "Nashville"
+    displayName: "Nashville",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

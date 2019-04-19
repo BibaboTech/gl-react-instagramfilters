@@ -19,15 +19,18 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Normal}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
       }}
     />
   },
   {
-    displayName: "Normal"
+    displayName: "Normal",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

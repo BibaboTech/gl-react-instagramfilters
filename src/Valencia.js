@@ -49,17 +49,20 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Valencia}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/valenciaMap.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/valenciaGradientMap.png')),
       }}
     />
   },
   {
-    displayName: "Valencia"
+    displayName: "Valencia",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

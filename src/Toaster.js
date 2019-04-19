@@ -74,11 +74,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Toaster}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/toasterMetal.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/toasterSoftLight.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/toasterCurves.png')),
@@ -88,6 +88,9 @@ module.exports = GL.createComponent(
     />
   },
   {
-    displayName: "Toaster"
+    displayName: "Toaster",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

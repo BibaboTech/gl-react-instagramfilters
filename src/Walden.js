@@ -33,17 +33,20 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Walden}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/waldenMap.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/vignetteMap.png')),
       }}
     />
   },
   {
-    displayName: "Walden"
+    displayName: "Walden",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

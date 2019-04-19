@@ -34,16 +34,19 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.LordKelvin}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/kelvinMap.png')),
       }}
     />
   },
   {
-    displayName: "LordKelvin"
+    displayName: "LordKelvin",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

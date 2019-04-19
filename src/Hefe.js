@@ -48,11 +48,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Hefe}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/edgeBurn.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/hefeMap.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/hefeGradientMap.png')),
@@ -62,6 +62,9 @@ module.exports = GL.createComponent(
     />
   },
   {
-    displayName: "Hefe"
+    displayName: "Hefe",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

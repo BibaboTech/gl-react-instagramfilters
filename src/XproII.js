@@ -33,17 +33,20 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.XproII}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/xproMap.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/vignetteMap.png')),
       }}
     />
   },
   {
-    displayName: "XproII"
+    displayName: "XproII",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

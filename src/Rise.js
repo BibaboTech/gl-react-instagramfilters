@@ -33,11 +33,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Rise}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/blackboard1024.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/overlayMap.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/riseMap.png')),
@@ -45,6 +45,9 @@ module.exports = GL.createComponent(
     />
   },
   {
-    displayName: "Rise"
+    displayName: "Rise",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

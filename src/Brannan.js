@@ -82,11 +82,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Brannan}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/brannanProcess.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/brannanBlowout.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/brannanContrast.png')),
@@ -96,6 +96,9 @@ module.exports = GL.createComponent(
     />
   },
   {
-    displayName: "Brannan"
+    displayName: "Brannan",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );

@@ -37,17 +37,20 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUri }) => {
     return <GL.Node
       shader={shaders.Lokofi}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUri,
         inputImageTexture2: resolveAssetSource(require('../resources/lomoMap.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/vignetteMap.png')),
       }}
     />
   },
   {
-    displayName: "Lokofi"
+    displayName: "Lokofi",
+    propTypes: {
+      imageUri: PropTypes.any.isRequired,
+    }
   }
 );
