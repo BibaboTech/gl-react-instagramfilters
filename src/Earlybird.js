@@ -108,11 +108,11 @@ const shaders = GL.Shaders.create({
 });
 
 module.exports = GL.createComponent(
-  ({ children: inputImageTexture }) => {
+  ({ imageUrl }) => {
     return <GL.Node
       shader={shaders.Earlybird}
       uniforms={{
-        inputImageTexture,
+        inputImageTexture: imageUrl,
         inputImageTexture2: resolveAssetSource(require('../resources/earlyBirdCurves.png')),
         inputImageTexture3: resolveAssetSource(require('../resources/earlybirdOverlayMap.png')),
         inputImageTexture4: resolveAssetSource(require('../resources/vignetteMap.png')),
