@@ -1,5 +1,5 @@
-const GL = require("gl-react");
-const React = require("react");
+import GL from 'gl-react';
+import React,{PropTypes} from 'react';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource'
 
 const shaders = GL.Shaders.create({
